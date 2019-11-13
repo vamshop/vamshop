@@ -277,7 +277,7 @@ class SecurityTokensService {
       <div style="color: #727272; padding: 0 0 20px 0;">{{requestFrom}}</div>
       If this was not you, you can safely ignore this email.<br /><br />
       Best,<br />
-      Cezerin Robot`;
+      VamShop Robot`;
 	}
 
 	async sendDashboardSigninUrl(req) {

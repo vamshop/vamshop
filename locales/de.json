@@ -347,7 +347,7 @@
   "multipleDeleteTitle": "Bist Du sicher da Du die ausgewählten {count} Artikel löschen möchtest?",
   "multipleDeleteDescription": "{count} Artikel werden sofort gelöscht. Aktion kann nicht rückgängig gemacht werden.",
   "webhooks": "Webhooks",
-  "webhooksAbout": "Webhooks erlauben es externe Dienste über bestimmte Events zu informieren. Sobald ein ausgewähltes Event auftritt, sendet Cezerin einen POST Request an die angegebene Url.",
+  "webhooksAbout": "Webhooks erlauben es externe Dienste über bestimmte Events zu informieren. Sobald ein ausgewähltes Event auftritt, sendet VamShop einen POST Request an die angegebene Url.",
   "webhookEdit": "Webhook bearbeiten",
   "webhookAdd": "Webhook hinzufügen",
   "webhookEvents": "Events",

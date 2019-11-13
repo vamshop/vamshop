@@ -346,7 +346,7 @@
     "multipleDeleteTitle": "Êtes-vous sûr de vouloir supprimer les {count} articles sélectionnés?",
     "multipleDeleteDescription": "{count} articles seront supprimés. Vous ne pourrez pas revenir en arrière.",
     "webhooks": "Webhooks",
-    "webhooksAbout": "Les Webhooks permettent aux services externes d'être notifiés lorsque certains événements se produisent. Lorsque les événements spécifiés se produisent, Cezerin envoie une requête POST à ​​chacune des URL que vous fournissez.",
+    "webhooksAbout": "Les Webhooks permettent aux services externes d'être notifiés lorsque certains événements se produisent. Lorsque les événements spécifiés se produisent, VamShop envoie une requête POST à ​​chacune des URL que vous fournissez.",
     "webhookEdit": "Modifier webhook",
     "webhookAdd": "Ajouter webhook",
     "webhookEvents": "Events",
