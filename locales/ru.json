@@ -78,7 +78,6 @@
   "products_stockPreorder": "Предзаказ",
   "products_stockBackorder": "Разрешить покупку если нет в наличии",
   "products_stockQuantity": "Количество товара",
-  "products_discontinued": "Снят с продажи",
   "products_weight": "Вес",
   "products_dateSaleFrom": "Скидка с",
   "products_dateSaleTo": "Скидка по",
@@ -274,7 +273,7 @@
   "orderTax": "Налог",
   "orderDiscount": "Скидка",
   "grandTotal": "Общая сумма",
-  "amountPaid": "Оплаченно",
+  "amountPaid": "Оплачено",
   "coupon": "Купон",
   "editOrderItem": "Изменить позицию заказа",
   "addOrderItem": "Добавить товар",
@@ -346,7 +345,11 @@
   "singleDeleteDescription": "Этот элемент будет удален безвозвратно. Вы не сможете отменить это действие.",
   "multipleDeleteTitle": "Вы действительно хотите удалить {count} выбранных элементов?",
   "multipleDeleteDescription": "{count} элементов будут удалены безвозвратно. Вы не можете отменить это действие.",
-  "webhooks": "Webhooks",
+  "redirects": "Редиректы",
+  "redirectsAbout": "Редиректы позволяют перенести адреса страниц со старого сайта. Каждый редирект будет возвращать 301 код ответа.",
+  "redirectEdit": "Изменить редирект",
+  "redirectAdd": "Добавить редирект",
+  "webhooks": "Уведомления о событиях",
   "webhooksAbout": "Webhook - позволяет уведомлять внешние службы о возникновении определенных событий. Когда указанные события произойдут, будет отправлен запрос POST на каждый из ваших URL-адресов.",
   "webhookEdit": "Редактирование Webhook",
   "webhookAdd": "Новый Webhook",
@@ -355,5 +358,6 @@
   "themeInstalled": "установка завершена",
   "category": "Категория",
   "additionalCategories": "Дополнительные категории",
-  "alt": "Атрибут alt"
+  "alt": "Атрибут alt",
+  "no_image": "нет картинки"
 }
