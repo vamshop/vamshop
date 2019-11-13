@@ -161,11 +161,6 @@
     }
   ]
 }, {
-  "section": "产品详情",
-  "key": "disqus_shortname",
-  "type": "string",
-  "label": "DISQUS-简称"
-}, {
   "section": "页脚",
   "key": "footer_about",
   "type": "string",

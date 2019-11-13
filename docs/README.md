@@ -19,11 +19,6 @@
 
 * How to change language
 
-### Recipes
-
-* How to Integrate Disqus
-<!-- * [How to Integrate Disqus](./recipes/how-to-integrate-disqus.md) -->
-
 ### NPM Scripts
 
 |`npm run <script>`|Description|

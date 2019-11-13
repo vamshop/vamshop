@@ -161,11 +161,6 @@
     }
   ]
 }, {
-  "section": "Artikeldetails",
-  "key": "disqus_shortname",
-  "type": "string",
-  "label": "DISQUS Abkürzung"
-}, {
   "section": "Footer",
   "key": "footer_about",
   "type": "string",

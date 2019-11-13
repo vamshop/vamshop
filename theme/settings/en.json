@@ -161,11 +161,6 @@
     }
   ]
 }, {
-  "section": "Product Details",
-  "key": "disqus_shortname",
-  "type": "string",
-  "label": "DISQUS shortname"
-}, {
   "section": "Footer",
   "key": "footer_about",
   "type": "string",
