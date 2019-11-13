@@ -215,7 +215,7 @@ const addShippingMethods = async db => {
 	const shippingMethodsNotExists = shippingMethodsCount === 0;
 	if (shippingMethodsNotExists) {
 		await db.collection('shippingMethods').insertOne({
-			name: 'Shipping method A',
+			name: 'Shipping Method',
 			enabled: true,
 			conditions: {
 				countries: [],
@@ -238,7 +238,7 @@ const addPaymentMethods = async db => {
 	const paymentMethodsNotExists = paymentMethodsCount === 0;
 	if (paymentMethodsNotExists) {
 		await db.collection('paymentMethods').insertOne({
-			name: 'PayPal',
+			name: 'Payment Method',
 			enabled: true,
 			conditions: {
 				countries: [],
