@@ -12,7 +12,7 @@ class SettingsService {
 	constructor() {
 		this.defaultSettings = {
 			domain: '',
-			logo_file: null,
+			logo_file: 'logo.png',
 			language: 'en',
 			currency_code: 'USD',
 			currency_symbol: '$',
