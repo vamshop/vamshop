@@ -12,8 +12,8 @@
 - MongoDB >= 3.2
 
 ```shell
-git clone https://github.com/cezerin/cezerin.git cezerin
-cd cezerin
+git clone https://github.com/vamshop/vamshop.git vamshop
+cd vamshop
 npm install
 npm run build
 ```

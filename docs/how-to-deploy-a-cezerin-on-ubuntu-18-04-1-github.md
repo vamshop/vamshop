@@ -1,13 +1,13 @@
-# How to deploy a Cezerin on Ubuntu 18.04.1 (from GitHub)
+# How to deploy a VamShop on Ubuntu 18.04.1 (from GitHub)
 
 * [Requirements](#1-requirements)
 * [Run MongoDB](#2-run-mongodb)
-* [Run Cezerin](#3-run-cezerin)
+* [Run VamShop](#3-run-vamshop)
 * [Run Nginx](#4-run-nginx)
 * [What's next](#5-whats-next)
 
 ## 1. Requirements
-I'll use [DigitalOcean](https://www.digitalocean.com/) to deploy Cezerin.
+I'll use [DigitalOcean](https://www.digitalocean.com/) to deploy VamShop.
 My droplet :
  - Choose an image: `Ubuntu 18.04.1 x64`
  - Choose a size: `1 GB (RAM), 1 vCPU, 25 GB (SSD)`
@@ -44,15 +44,15 @@ We need to install:
 docker run --name store-db -d -p 27017:27017 -v /var/www/store-db:/data/db mongo:latest
 ```
 
-## 3. Run Cezerin
+## 3. Run VamShop
 1. Clone a Git repository
     ```shell
     cd /var/www
-    git clone https://github.com/cezerin/cezerin
+    git clone https://github.com/vamshop/vamshop
     ```
 2. Change setting
     ```
-    cd cezerin/config
+    cd vamshop/config
     mv admin.production.js admin.js
     mv store.production.js store.js
     mv server.production.js server.js
