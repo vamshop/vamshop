@@ -6,7 +6,7 @@ server {
         listen 127.0.0.1:8888;
         server_tokens off;
         location ~ "^/resize/(?<entity>\w+)/(?<id>\w+)/(?<width>[1-9][0-9][0-9]{1}|[1][0-9][0-9][0-9]{1})/(?<file>.+)$" {
-                alias /var/www/vamshop/public/content/images/$entity/$id/$file;
+                alias /var/www/cezerin/public/content/images/$entity/$id/$file;
                 image_filter_buffer 20M;
                 image_filter_jpeg_quality 85;
                 image_filter_interlace on;
@@ -38,7 +38,7 @@ server {
         expires 1y;
         access_log off;
         log_not_found off;
-        root /var/www/vamshop/public/content;
+        root /var/www/cezerin/public/content;
 
         location ~ "^/images/(?<entity>\w+)/(?<id>\w+)/(?<width>[1-9][0-9][0-9]{1}|[1][0-9][0-9][0-9]{1})/(?<file>.+)$" {
                 # /images/products/id/100/file.jpg >>> Proxy to internal image resizing server
@@ -48,20 +48,20 @@ server {
         }
 
         location /admin {
-                alias /var/www/vamshop/public/admin/;
+                alias /var/www/cezerin/public/admin/;
 		            try_files /index.html /index.html;
         }
 
         location /admin-assets/ {
-                alias /var/www/vamshop/public/admin-assets/;
+                alias /var/www/cezerin/public/admin-assets/;
         }
 
         location /assets/ {
-                alias /var/www/vamshop/theme/assets/;
+                alias /var/www/cezerin/theme/assets/;
         }
 
         location /sw.js {
-                root /var/www/vamshop/theme/assets/;
+                root /var/www/cezerin/theme/assets/;
         }
 
         location ~ ^/(api|ajax|ws)/ {

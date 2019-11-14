@@ -1,6 +1,6 @@
 // config used by dashboard client side only
 module.exports = {
 	// dashboard UI language
-	language: 'ru',
+	language: 'en',
 	apiBaseUrl: '/api/v1'
 };

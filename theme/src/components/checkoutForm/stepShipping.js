@@ -10,7 +10,7 @@ const validateRequired = value =>
 const getFieldLabelByKey = key => {
 	switch (key) {
 		case 'full_name':
-			return text.fullName;
+			return text.full_name;
 		case 'address1':
 			return text.address1;
 		case 'address2':
@@ -66,6 +66,7 @@ class CheckoutStepShipping extends React.Component {
 			editButtonClassName,
 			title,
 			show,
+			step,
 			isReadOnly,
 			showPaymentForm,
 			onEdit
@@ -93,12 +94,16 @@ class CheckoutStepShipping extends React.Component {
 
 		if (!show) {
 			return (
-				<div className="checkout-step">
-					<h1>
-						<span>2</span>
-						{title}
-					</h1>
-				</div>
+				<span>
+					{step > 1 && (
+						<div className="checkout-step">
+							<h1>
+								<span>2</span>
+								{title}
+							</h1>
+						</div>
+					)}
+				</span>
 			);
 		} else if (isReadOnly) {
 			let shippingFields = null;
@@ -128,13 +133,12 @@ class CheckoutStepShipping extends React.Component {
 					</h1>
 					{shippingFields}
 
-					{!hideCommentsField &&
-						initialValues.comments !== '' && (
-							<div className="checkout-field-preview">
-								<div className="name">{commentsFieldLabel}</div>
-								<div className="value">{initialValues.comments}</div>
-							</div>
-						)}
+					{!hideCommentsField && initialValues.comments !== '' && (
+						<div className="checkout-field-preview">
+							<div className="name">{commentsFieldLabel}</div>
+							<div className="value">{initialValues.comments}</div>
+						</div>
+					)}
 
 					<div className="checkout-button-wrap">
 						<button
@@ -221,7 +225,7 @@ class CheckoutStepShipping extends React.Component {
 											id="billing_address.full_name"
 											component={InputField}
 											type="text"
-											label={text.fullName}
+											label={text.full_name}
 											validate={[validateRequired]}
 										/>
 										<Field
@@ -273,7 +277,13 @@ class CheckoutStepShipping extends React.Component {
 						<div className="checkout-button-wrap">
 							<button
 								type="submit"
-								disabled={submitting || processingCheckout || invalid}
+								disabled={
+									submitting ||
+									processingCheckout ||
+									invalid ||
+									initialValues.shipping_method_id === null ||
+									initialValues.payment_method_id === null
+								}
 								className={`${buttonClassName}${
 									processingCheckout ? ' is-loading' : ''
 								}`}

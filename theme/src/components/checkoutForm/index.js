@@ -3,6 +3,7 @@ import { themeSettings, text } from '../../lib/settings';
 import CheckoutStepContacts from './stepContacts';
 import CheckoutStepShipping from './stepShipping';
 import CheckoutStepPayment from './stepPayment';
+import Lscache from 'lscache';
 
 export default class CheckoutForm extends React.Component {
 	constructor(props) {
@@ -15,6 +16,13 @@ export default class CheckoutForm extends React.Component {
 	componentDidMount() {
 		this.props.loadShippingMethods();
 		this.props.loadPaymentMethods();
+		this.props.customerData({
+			token: Lscache.get('auth_data')
+		});
+
+		this.props.cartLayerInitialized({
+			cartlayerBtnInitialized: false
+		});
 	}
 
 	changeStep = step => {
@@ -38,18 +46,18 @@ export default class CheckoutForm extends React.Component {
 	};
 
 	handleContactsSubmit = values => {
-		this.props.updateCart({
-			email: values.email,
-			mobile: values.mobile
-		});
-		this.handleContactsSave();
-	};
-
-	handleLocationSave = shippingLocation => {
+		let { shipping_address, billing_address } = values;
+		shipping_address.full_name = `${values.first_name} ${values.last_name}`;
 		this.props.updateCart(
 			{
-				shipping_address: shippingLocation,
-				billing_address: shippingLocation,
+				full_name: `${values.first_name} ${values.last_name}`,
+				first_name: values.first_name,
+				last_name: values.last_name,
+				email: values.email,
+				mobile: values.mobile,
+				password: values.password,
+				shipping_address,
+				billing_address,
 				payment_method_id: null,
 				shipping_method_id: null
 			},
@@ -58,6 +66,8 @@ export default class CheckoutForm extends React.Component {
 				this.props.loadPaymentMethods();
 			}
 		);
+
+		this.handleContactsSave();
 	};
 
 	handleShippingMethodSave = shippingMethodId => {
@@ -87,7 +97,8 @@ export default class CheckoutForm extends React.Component {
 
 	handleShippingSubmit = values => {
 		if (this.isShowPaymentForm()) {
-			const { shipping_address, billing_address, comments } = values;
+			let { shipping_address, billing_address, comments } = values;
+			shipping_address.full_name = `${values.first_name} ${values.last_name}`;
 
 			this.props.updateCart({
 				shipping_address,
@@ -121,12 +132,15 @@ export default class CheckoutForm extends React.Component {
 		const {
 			settings,
 			cart,
+			customerProperties,
 			paymentMethods,
 			shippingMethods,
+			shippingMethod,
 			loadingShippingMethods,
 			loadingPaymentMethods,
 			checkoutFields,
-			processingCheckout
+			processingCheckout,
+			cartlayerBtnInitialized
 		} = this.props.state;
 
 		const {
@@ -139,10 +153,16 @@ export default class CheckoutForm extends React.Component {
 			const showPaymentForm = this.isShowPaymentForm();
 
 			let shippingMethod = null;
-			const { shipping_method_id } = cart;
+			let paymentMethod = null;
+			const { shipping_method_id, payment_method_id } = cart;
 			if (shipping_method_id && shippingMethods && shippingMethods.length > 0) {
 				shippingMethod = shippingMethods.find(
 					method => method.id === shipping_method_id
+				);
+			}
+			if (payment_method_id && paymentMethods && paymentMethods.length > 0) {
+				paymentMethod = paymentMethods.find(
+					method => method.id === payment_method_id
 				);
 			}
 
@@ -150,26 +170,30 @@ export default class CheckoutForm extends React.Component {
 				<div className="checkout-form">
 					<CheckoutStepContacts
 						isReadOnly={step > 1}
+						step={step}
 						title={text.customerDetails}
 						inputClassName={checkoutInputClass}
 						buttonClassName={checkoutButtonClass}
 						editButtonClassName={checkoutEditButtonClass}
 						initialValues={cart}
 						settings={settings}
+						customerProperties={customerProperties}
 						paymentMethods={paymentMethods}
+						shippingMethod={shippingMethod}
 						shippingMethods={shippingMethods}
 						loadingShippingMethods={loadingShippingMethods}
 						loadingPaymentMethods={loadingPaymentMethods}
 						checkoutFields={checkoutFields}
 						onEdit={this.handleContactsEdit}
 						onSubmit={this.handleContactsSubmit}
-						saveShippingLocation={this.handleLocationSave}
 						saveShippingMethod={this.handleShippingMethodSave}
 						savePaymentMethod={this.handlePaymentMethodSave}
+						cartlayerBtnInitialized={cartlayerBtnInitialized}
 					/>
 
 					<CheckoutStepShipping
 						show={step >= 2}
+						step={step}
 						isReadOnly={step > 2}
 						title={text.shipping}
 						inputClassName={checkoutInputClass}
@@ -179,6 +203,7 @@ export default class CheckoutForm extends React.Component {
 						settings={settings}
 						processingCheckout={processingCheckout}
 						shippingMethod={shippingMethod}
+						paymentMethod={paymentMethod}
 						checkoutFields={checkoutFields}
 						showPaymentForm={showPaymentForm}
 						onSave={this.handleShippingSave}
@@ -189,6 +214,7 @@ export default class CheckoutForm extends React.Component {
 					{showPaymentForm && (
 						<CheckoutStepPayment
 							show={step === 3}
+							step={step}
 							title={text.payment}
 							inputClassName={checkoutInputClass}
 							buttonClassName={checkoutButtonClass}

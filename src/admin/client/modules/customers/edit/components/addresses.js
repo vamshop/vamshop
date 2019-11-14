@@ -18,6 +18,8 @@ import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import Dialog from 'material-ui/Dialog';
 
+let countRender = 0;
+
 const Address = ({ address }) => {
 	return (
 		<div className={style.address}>
@@ -51,6 +53,10 @@ class CustomerAddress extends React.Component {
 			openEdit: false,
 			openDelete: false
 		};
+	}
+
+	componentWillMount() {
+		countRender++;
 	}
 
 	showEditForm = () => {
@@ -90,7 +96,8 @@ class CustomerAddress extends React.Component {
 	render() {
 		const { address, onUpdateAddress } = this.props;
 
-		let title = messages.address;
+		let title =
+			countRender === 1 ? messages.billingAddress : messages.shippingAddress;
 		if (address.default_billing && address.default_shipping) {
 			title = `${messages.shippingAddress} / ${messages.billingAddress}`;
 		} else if (address.default_billing) {
@@ -164,6 +171,7 @@ const CustomerAddresses = ({
 	onSetDefaultShippingAddress
 }) => {
 	if (customer && customer.addresses && customer.addresses.length > 0) {
+		console.log(customer.addresses);
 		const addresses = customer.addresses.map((address, index) => (
 			<CustomerAddress
 				key={index}

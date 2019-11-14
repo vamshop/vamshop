@@ -57,7 +57,7 @@ export const getThumbnailUrl = (originalUrl, width) => {
 export const getOrderFieldLabelByKey = key => {
 	switch (key) {
 		case 'full_name':
-			return messages.fullName;
+			return messages.full_name;
 		case 'address1':
 			return messages.address1;
 		case 'address2':

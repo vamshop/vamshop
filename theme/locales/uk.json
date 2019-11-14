@@ -51,7 +51,7 @@
   "country": "Країна",
   "state": "Область",
   "city": "Місто",
-  "fullName": "ПІБ",
+  "full_name": "ПІБ",
   "address1": "Адреса",
   "address2": "Адреса (додатково)",
   "postal_code": "Поштовий індекс",

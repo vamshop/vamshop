@@ -4,12 +4,12 @@
 * Getting Started
   - [with GitHub](./getting-started.md)
   - [with Docker](./getting-started-docker.md)
-* [How to deploy a VamShop on Ubuntu 16.04 (from Docker)](./how-to-deploy-a-vamshop-on-ubuntu-16-04.md)
-* [How to deploy a VamShop on Ubuntu 18.04.1 (from GitHub)](./how-to-deploy-a-vamshop-on-ubuntu-18-04-1-github.md)
+* [How to deploy a Cezerin on Ubuntu 16.04 (from Docker)](./how-to-deploy-a-cezerin-on-ubuntu-16-04.md)
+* [How to deploy a Cezerin on Ubuntu 18.04.1 (from GitHub)](./how-to-deploy-a-cezerin-on-ubuntu-18-04-1-github.md)
 * [Application Structure](./structure.md)
 * [Initialize MongoDB](./initialize-mongodb.md)
 * [API Reference](./api)
-* [API Client](https://github.com/vamshop/client)
+* [API Client](https://github.com/cezerin/client)
 * Theme customization
 * Localization
 * Payment Gateway
@@ -18,6 +18,11 @@
 ### Questions
 
 * How to change language
+
+### Recipes
+
+* How to Integrate Disqus
+<!-- * [How to Integrate Disqus](./recipes/how-to-integrate-disqus.md) -->
 
 ### NPM Scripts
 

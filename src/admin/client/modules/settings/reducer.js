@@ -18,9 +18,11 @@ const initialState = {
 		length_unit: 'cm'
 	},
 	emailSettings: null,
+	importSettings: null,
 	emailTemplate: null,
 	checkoutField: null,
 	checkoutFields: [],
+	commerceSettings: null,
 	shippingMethods: [],
 	paymentMethods: [],
 	shippingMethodEdit: {},
@@ -49,6 +51,10 @@ export default (state = initialState, action) => {
 			return Object.assign({}, state, { settings: action.settings });
 		case t.EMAIL_SETTINGS_RECEIVE:
 			return Object.assign({}, state, { emailSettings: action.emailSettings });
+		case t.IMPORT_SETTINGS_RECEIVE:
+			return Object.assign({}, state, {
+				importSettings: action.importSettings
+			});
 		case t.EMAIL_TEMPLATE_REQUEST:
 			return Object.assign({}, state, { emailTemplate: null });
 		case t.EMAIL_TEMPLATE_RECEIVE:
@@ -77,6 +83,12 @@ export default (state = initialState, action) => {
 			return Object.assign({}, state, { checkoutField: null });
 		case t.CHECKOUT_FIELD_RECEIVE:
 			return Object.assign({}, state, { checkoutField: action.checkoutField });
+		case t.COMMERCE_SETTINGS_REQUEST:
+			return Object.assign({}, state, { commerceSettings: null });
+		case t.COMMERCE_SETTINGS_RECEIVE:
+			return Object.assign({}, state, {
+				commerceSettings: action.commerceSettings
+			});
 		case t.CHECKOUT_FIELDS_RECEIVE:
 			return Object.assign({}, state, {
 				checkoutFields: action.checkoutFields

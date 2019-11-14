@@ -132,6 +132,10 @@ class OrdersService {
 				alternativeSearch.push({ number: searchAsNumber });
 			}
 
+			alternativeSearch.push({ full_name: new RegExp(params.search, 'i') });
+			alternativeSearch.push({ first_name: new RegExp(params.search, 'i') });
+			alternativeSearch.push({ last_name: new RegExp(params.search, 'i') });
+			alternativeSearch.push({ password: new RegExp(params.search, 'i') });
 			alternativeSearch.push({ email: new RegExp(params.search, 'i') });
 			alternativeSearch.push({ mobile: new RegExp(params.search, 'i') });
 			alternativeSearch.push({ $text: { $search: params.search } });
@@ -151,7 +155,7 @@ class OrdersService {
 			db
 				.collection('orders')
 				.find(filter)
-				.sort({ date_placed: -1, date_created: -1 })
+				.sort({ date_placed: 1, date_created: 1 })
 				.skip(offset)
 				.limit(limit)
 				.toArray(),
@@ -189,8 +193,8 @@ class OrdersService {
 		if (!ObjectID.isValid(id)) {
 			return Promise.reject('Invalid identifier');
 		}
-		return this.getOrders({ id: id }).then(
-			items => (items.data.length > 0 ? items.data[0] : {})
+		return this.getOrders({ id: id }).then(items =>
+			items.data.length > 0 ? items.data[0] : {}
 		);
 	}
 
@@ -213,17 +217,21 @@ class OrdersService {
 								addresses.push(order.shipping_address);
 							}
 
-							let customerrFullName =
+							let customerFullName =
 								order.shipping_address && order.shipping_address.full_name
 									? order.shipping_address.full_name
 									: '';
 
 							return CustomersService.addCustomer({
+								full_name: order.full_name,
+								first_name: order.first_name,
+								last_name: order.last_name,
+								password: order.password,
 								email: order.email,
-								full_name: customerrFullName,
 								mobile: order.mobile,
 								browser: order.browser,
-								addresses: addresses
+								//addresses: customer.addresses
+								addresses: order.shipping_address
 							}).then(customer => {
 								return customer.id;
 							});
@@ -397,6 +405,10 @@ class OrdersService {
 				order.hold = parse.getBooleanIfValid(data.hold, false);
 				order.draft = parse.getBooleanIfValid(data.draft, true);
 
+				order.full_name = parse.getString(data.full_name).toLowerCase();
+				order.first_name = parse.getString(data.first_name).toLowerCase();
+				order.last_name = parse.getString(data.last_name).toLowerCase();
+				order.password = parse.getString(data.password);
 				order.email = parse.getString(data.email).toLowerCase();
 				order.mobile = parse.getString(data.mobile).toLowerCase();
 				order.referrer_url = parse.getString(data.referrer_url).toLowerCase();
@@ -481,11 +493,26 @@ class OrdersService {
 			if (data.draft !== undefined) {
 				order.draft = parse.getBooleanIfValid(data.draft, true);
 			}
+			if (data.full_name !== undefined) {
+				order.full_name = parse.getString(data.full_name);
+			}
+			if (data.first_name !== undefined) {
+				order.first_name = parse.getString(data.first_name);
+			}
+			if (data.last_name !== undefined) {
+				order.last_name = parse.getString(data.last_name);
+			}
+			if (data.password !== undefined) {
+				order.password = parse.getString(data.password);
+			}
 			if (data.email !== undefined) {
 				order.email = parse.getString(data.email).toLowerCase();
 			}
 			if (data.mobile !== undefined) {
 				order.mobile = parse.getString(data.mobile).toLowerCase();
+			}
+			if (data.addresses !== undefined) {
+				data.addresses = parse.getOrderAddress(data.shipping_address);
 			}
 			if (data.referrer_url !== undefined) {
 				order.referrer_url = parse.getString(data.referrer_url).toLowerCase();

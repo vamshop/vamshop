@@ -6,7 +6,8 @@ import {
 	deleteProducts,
 	setCategory,
 	setFilter,
-	createProduct
+	createProduct,
+	importProducts
 } from '../actions';
 import Buttons from './components/buttons';
 
@@ -31,13 +32,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		},
 		onCreate: () => {
 			dispatch(createProduct(ownProps.history));
+		},
+		onImportProducts: () => {
+			dispatch(importProducts(ownProps.history));
 		}
 	};
 };
 
 export default withRouter(
-	connect(
-		mapStateToProps,
-		mapDispatchToProps
-	)(Buttons)
+	connect(mapStateToProps, mapDispatchToProps)(Buttons)
 );

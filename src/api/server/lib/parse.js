@@ -66,14 +66,14 @@ const getCustomerAddress = address => {
 	return address
 		? {
 				id: new ObjectID(),
+				full_name: getString(address.full_name),
 				address1: getString(address.address1),
 				address2: getString(address.address2),
 				city: getString(address.city),
 				country: getString(address.country).toUpperCase(),
+				postal_code: getString(address.postal_code),
 				state: getString(address.state),
 				phone: getString(address.phone),
-				postal_code: getString(address.postal_code),
-				full_name: getString(address.full_name),
 				company: getString(address.company),
 				tax_number: getString(address.tax_number),
 				coordinates: coordinates,
@@ -96,14 +96,14 @@ const getOrderAddress = address => {
 	}
 
 	const emptyAddress = {
+		full_name: '',
 		address1: '',
 		address2: '',
 		city: '',
 		country: '',
+		postal_code: '',
 		state: '',
 		phone: '',
-		postal_code: '',
-		full_name: '',
 		company: '',
 		tax_number: '',
 		coordinates: coordinates,
@@ -114,14 +114,14 @@ const getOrderAddress = address => {
 		? Object.assign(
 				{},
 				{
+					full_name: getString(address.full_name),
 					address1: getString(address.address1),
 					address2: getString(address.address2),
 					city: getString(address.city),
 					country: getString(address.country).toUpperCase(),
+					postal_code: getString(address.postal_code),
 					state: getString(address.state),
 					phone: getString(address.phone),
-					postal_code: getString(address.postal_code),
-					full_name: getString(address.full_name),
 					company: getString(address.company),
 					tax_number: getString(address.tax_number),
 					coordinates: coordinates,

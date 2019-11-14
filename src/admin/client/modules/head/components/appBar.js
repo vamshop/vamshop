@@ -90,6 +90,31 @@ export default class AppBarTop extends React.Component {
 
 			rightElements = <ProductsHead />;
 		}
+		if (pathname === '/admin/products/import') {
+			title = messages.drawer_importing;
+
+			if (productCategoryName) {
+				title = (
+					<span>
+						{messages.drawer_importing}
+						<FontIcon
+							style={{ top: 6 }}
+							color="#fff"
+							className="material-icons"
+						>
+							chevron_right
+						</FontIcon>
+						{productCategoryName}
+					</span>
+				);
+			}
+
+			if (productsSelectedCount > 0) {
+				title = `${productsSelectedCount} ${messages.selected}`;
+			}
+
+			rightElements = <ProductsHead />;
+		}
 		if (pathname === '/admin/orders') {
 			title = messages.orders_title;
 
@@ -403,6 +428,17 @@ export default class AppBarTop extends React.Component {
 			title = messages.settings_generalSettings;
 		} else if (pathname === '/admin/settings/general/logo') {
 			title = messages.logo;
+			leftButton = (
+				<Link to="/admin/settings">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
+		} else if (pathname === '/admin/settings/general/commerceform') {
+			title = messages.commerce_form;
 			leftButton = (
 				<Link to="/admin/settings">
 					<IconButton>

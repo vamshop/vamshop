@@ -38,7 +38,7 @@ const DeveloperForm = ({
 								component={TextField}
 								fullWidth={true}
 								name="name"
-								floatingLabelText={messages.fullName}
+								floatingLabelText={messages.full_name}
 							/>
 						</div>
 						<div>

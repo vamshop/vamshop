@@ -161,6 +161,11 @@
     }
   ]
 }, {
+  "section": "Описание товара",
+  "key": "disqus_shortname",
+  "type": "string",
+  "label": "Комментаии DISQUS shortname"
+}, {
   "section": "Футер",
   "key": "footer_about",
   "type": "string",

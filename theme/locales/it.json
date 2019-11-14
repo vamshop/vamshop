@@ -51,7 +51,7 @@
   "country": "Paese",
   "state": "Stato/Province",
   "city": "Città",
-  "fullName": "Nome completo",
+  "full_name": "Nome completo",
   "address1": "Indirizzo 1",
   "address2": "Indirizzo 2",
   "postal_code": "CAP",

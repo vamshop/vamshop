@@ -45,18 +45,20 @@ const CommentsField = ({ order, checkoutFields }) => {
 
 const ShippingFields = ({ order, shippingMethod }) => {
 	let shippingFields = null;
-	if (
-		shippingMethod &&
-		shippingMethod.fields &&
-		shippingMethod.fields.length > 0
-	) {
-		shippingFields = shippingMethod.fields.map((field, index) => {
-			const fieldLabel = helper.getShippingFieldLabel(field);
-			const fieldValue = order.shipping_address[field.key];
+	if (shippingMethod) {
+		shippingFields = Object.keys(order.shipping_address).map((key, i) => {
+			const fieldLabel = helper.getShippingFieldLabelOrderSuccess(key);
+			const fieldValue = order.shipping_address[key];
 
-			return (
-				<ShippingFieldDiv key={index} label={fieldLabel} value={fieldValue} />
-			);
+			if (
+				key.indexOf('coordinates') === -1 &&
+				fieldValue !== '' &&
+				fieldLabel !== ''
+			) {
+				return (
+					<ShippingFieldDiv key={i} label={fieldLabel} value={fieldValue} />
+				);
+			}
 		});
 	}
 

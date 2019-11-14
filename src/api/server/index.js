@@ -11,6 +11,7 @@ import { db } from './lib/mongo';
 import dashboardWebSocket from './lib/dashboardWebSocket';
 import ajaxRouter from './ajaxRouter';
 import apiRouter from './apiRouter';
+
 const app = express();
 
 security.applyMiddleware(app);

@@ -1,7 +1,7 @@
-import VamshopClient from 'vamshop-client';
+import CezerinClient from 'cezerin2-client';
 import clientSettings from './settings';
 
-const api = new VamshopClient({
+const api = new CezerinClient({
 	ajaxBaseUrl: clientSettings.ajaxBaseUrl || '/ajax'
 });
 

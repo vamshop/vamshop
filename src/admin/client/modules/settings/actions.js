@@ -40,6 +40,13 @@ function receiveEmailSettings(emailSettings) {
 	};
 }
 
+function receiveImportSettings(importSettings) {
+	return {
+		type: t.IMPORT_SETTINGS_RECEIVE,
+		importSettings
+	};
+}
+
 function receiveEmailTemplate(emailTemplate) {
 	return {
 		type: t.EMAIL_TEMPLATE_RECEIVE,
@@ -70,6 +77,19 @@ function receiveCheckoutField(checkoutField) {
 function requestCheckoutField() {
 	return {
 		type: t.CHECKOUT_FIELD_REQUEST
+	};
+}
+
+function receiveCommerceSettings(commerceSettings) {
+	return {
+		type: t.COMMERCE_SETTINGS_RECEIVE,
+		commerceSettings
+	};
+}
+
+function requestCommerceSettings() {
+	return {
+		type: t.COMMERCE_SETTINGS_REQUEST
 	};
 }
 
@@ -182,6 +202,17 @@ export function fetchEmailSettings() {
 	};
 }
 
+export function fetchImportSettings() {
+	return (dispatch, getState) => {
+		return api.settings
+			.retrieveImportSettings()
+			.then(({ status, json }) => {
+				dispatch(receiveImportSettings(json));
+			})
+			.catch(error => {});
+	};
+}
+
 export function deleteLogo() {
 	return (dispatch, getState) => {
 		return api.settings
@@ -218,6 +249,17 @@ export function updateEmailSettings(emailSettings) {
 			.updateEmailSettings(emailSettings)
 			.then(({ status, json }) => {
 				dispatch(receiveEmailSettings(json));
+			})
+			.catch(error => {});
+	};
+}
+
+export function updateImportSettings(importSettings) {
+	return (dispatch, getState) => {
+		return api.settings
+			.updateImportSettings(importSettings)
+			.then(({ status, json }) => {
+				dispatch(receiveImportSettings(json));
 			})
 			.catch(error => {});
 	};
@@ -279,6 +321,28 @@ export function updateCheckoutField(checkoutField) {
 			.then(({ status, json }) => {
 				json.fieldName = fieldName;
 				dispatch(receiveCheckoutField(json));
+			})
+			.catch(error => {});
+	};
+}
+
+export function fetchCommerceSettings() {
+	return (dispatch, getState) => {
+		return api.settings
+			.retrieveCommerceSettings()
+			.then(({ status, json }) => {
+				dispatch(receiveCommerceSettings(json));
+			})
+			.catch(error => {});
+	};
+}
+
+export function updateCommerceSettings(commerceSettings) {
+	return (dispatch, getState) => {
+		return api.settings
+			.updateCommerceSettings(commerceSettings)
+			.then(({ status, json }) => {
+				dispatch(receiveCommerceSettings(json));
 			})
 			.catch(error => {});
 	};
@@ -421,6 +485,7 @@ export function createToken(token) {
 		return api.tokens
 			.create(token)
 			.then(({ status, json }) => {
+				console.log(json);
 				dispatch(fetchTokens());
 				dispatch(receiveNewToken(json.token));
 			})

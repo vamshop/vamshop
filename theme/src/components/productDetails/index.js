@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as helper from '../../lib/helper';
 import { themeSettings, text } from '../../lib/settings';
+import Disqus from '../comments/disqus';
 import ViewedProducts from '../products/viewed';
 import Breadcrumbs from './breadcrumbs';
 import DiscountCountdown from './discountCountdown';
@@ -106,10 +107,10 @@ export default class ProductDetails extends React.Component {
 			product.stock_status === 'discontinued'
 				? 0
 				: product.stock_backorder
-					? themeSettings.maxCartItemQty
-					: selectedVariant
-						? selectedVariant.stock_quantity
-						: product.stock_quantity;
+				? themeSettings.maxCartItemQty
+				: selectedVariant
+				? selectedVariant.stock_quantity
+				: product.stock_quantity;
 
 		if (product) {
 			return (
@@ -192,6 +193,19 @@ export default class ProductDetails extends React.Component {
 						/>
 					)}
 
+					{themeSettings.disqus_shortname &&
+						themeSettings.disqus_shortname !== '' && (
+							<section className="section">
+								<div className="container">
+									<Disqus
+										shortname={themeSettings.disqus_shortname}
+										identifier={product.id}
+										title={product.name}
+										url={product.url}
+									/>
+								</div>
+							</section>
+						)}
 				</Fragment>
 			);
 		} else {

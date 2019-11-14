@@ -1,5 +1,5 @@
 import winston from 'winston';
-import VamshopClient from 'vamshop-client';
+import CezerinClient from 'cezerin2-client';
 import React from 'react';
 import { StaticRouter } from 'react-router';
 import { renderToString } from 'react-dom/server';
@@ -16,7 +16,7 @@ import App from '../shared/app';
 
 initOnServer({
 	language: serverSettings.language,
-	api: new VamshopClient({
+	api: new CezerinClient({
 		ajaxBaseUrl: serverSettings.ajaxBaseUrl
 	})
 });

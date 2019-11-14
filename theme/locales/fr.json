@@ -51,7 +51,7 @@
   "country": "Pays",
   "state": "Région",
   "city": "Ville",
-  "fullName": "Nom complet",
+  "full_name": "Nom complet",
   "address1": "Address ligne 1",
   "address2": "Address ligne 2",
   "postal_code": "Code Postal",

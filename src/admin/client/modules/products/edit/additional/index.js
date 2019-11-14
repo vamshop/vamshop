@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { updateProduct } from '../../actions';
+import { importProducts, updateProduct } from '../../actions';
 import ProductAdditionalForm from './components/form';
 
 const mapStateToProps = (state, ownProps) => {
@@ -29,8 +29,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default withRouter(
-	connect(
-		mapStateToProps,
-		mapDispatchToProps
-	)(ProductAdditionalForm)
+	connect(mapStateToProps, mapDispatchToProps)(ProductAdditionalForm)
 );

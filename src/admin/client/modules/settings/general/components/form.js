@@ -71,6 +71,24 @@ class GeneralSettings extends React.Component {
 					<div style={{ width: '100%' }}>
 						<List>
 							<Link
+								to={'/admin/settings/general/commerceform'}
+								style={{ textDecoration: 'none' }}
+							>
+								<ListItem
+									rightIcon={
+										<FontIcon className="material-icons">
+											keyboard_arrow_right
+										</FontIcon>
+									}
+									primaryText={messages.commerce_form}
+								/>
+							</Link>
+							<Divider />
+						</List>
+					</div>
+					<div style={{ width: '100%' }}>
+						<List>
+							<Link
 								to={'/admin/settings/general/logo'}
 								style={{ textDecoration: 'none' }}
 							>
@@ -88,6 +106,45 @@ class GeneralSettings extends React.Component {
 					</div>
 
 					<div className={style.innerBox}>
+						<div className="row between-xs middle-xs">
+							<div className="col-xs-12 col-sm-6">{messages.company}</div>
+							<div className="col-xs-12 col-sm-6">
+								<Field
+									component={TextField}
+									fullWidth={true}
+									name="store_name"
+									type="string"
+									placeholder="Name of the company / store"
+								/>
+							</div>
+						</div>
+
+						<Divider
+							style={{
+								marginTop: 10,
+								marginBottom: 10
+							}}
+						/>
+						<div className="row between-xs middle-xs">
+							<div className="col-xs-12 col-sm-6">{messages.language}</div>
+							<div className="col-xs-12 col-sm-6">
+								<Field
+									component={TextField}
+									fullWidth={true}
+									name="language"
+									type="string"
+									placeholder="Language"
+								/>
+							</div>
+						</div>
+
+						<Divider
+							style={{
+								marginTop: 10,
+								marginBottom: 10
+							}}
+						/>
+
 						<div className="row between-xs middle-xs">
 							<div className="col-xs-12 col-sm-6">{messages.currency}</div>
 							<div className="col-xs-12 col-sm-6">

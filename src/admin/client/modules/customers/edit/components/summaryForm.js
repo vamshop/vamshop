@@ -73,7 +73,7 @@ class CustomerEditForm extends React.Component {
 							component={TextField}
 							fullWidth={true}
 							name="full_name"
-							floatingLabelText={messages.fullName}
+							floatingLabelText={messages.full_name}
 						/>
 					</div>
 					<Field
